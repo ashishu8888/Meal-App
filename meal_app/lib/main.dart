@@ -64,6 +64,10 @@ class _mainAppState extends State<mainApp> {
     }
   }
 
+  _isMealFourite(String id) {
+    return _favouriteMeals.any((meal) => meal.id == id);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -86,7 +90,8 @@ class _mainAppState extends State<mainApp> {
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(
               availableMeal: _availableMeals,
             ),
-        MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
+        MealDetailScreen.routeName: (ctx) =>
+            MealDetailScreen(_toggleFavourite, _isMealFourite),
         FiltersScreen.routeName: (ctx) => FiltersScreen(
               saveFilter: _setFilters,
               currentFilters: _filters,
